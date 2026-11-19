@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gửi em yêu ❤️</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; overflow: hidden;
+    display: grid; place-items: center;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: radial-gradient(circle at top, #ffe5ee, #ffb6cc 55%, #f78da7);
+    color: #8f173f;
+  }
+  .card {
+    width: min(90vw, 520px); padding: 42px 24px;
+    text-align: center; border-radius: 28px;
+    background: rgba(255,255,255,.78);
+    box-shadow: 0 18px 60px rgba(130, 20, 60, .18);
+    position: relative; z-index: 2;
+  }
+  .heart {
+    font-size: 110px; line-height: 1.2;
+    display: inline-block; cursor: pointer;
+    animation: beat 1s infinite;
+    filter: drop-shadow(0 8px 12px rgba(220,35,90,.25));
+    user-select: none;
+  }
+  @keyframes beat {
+    0%,100% { transform: scale(1); }
+    15% { transform: scale(1.16); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.1); }
+  }
+  h1 { font-size: clamp(25px, 6vw, 36px); margin: 16px 0 10px; }
+  p { font-size: clamp(18px, 4vw, 22px); margin: 8px 0; }
+  .love { font-weight: 800; color: #e32663; font-size: 28px; margin-top: 16px; }
+  .hint { font-size: 13px; opacity: .7; margin-top: 22px; }
+  .float {
+    position: fixed; bottom: -40px; color: rgba(255,255,255,.8);
+    animation: rise linear forwards; z-index: 1; pointer-events: none;
+  }
+  @keyframes rise {
+    to { transform: translateY(-115vh) rotate(25deg); opacity: 0; }
+  }
+  button {
+    border: 0; border-radius: 999px; padding: 12px 22px;
+    background: #e83e70; color: white; font-size: 16px;
+    cursor: pointer; margin-top: 18px;
+    box-shadow: 0 6px 16px rgba(232,62,112,.25);
+  }
+  button:hover { background: #cf285c; }
+</style>
+</head>
+<body>
+  <main class="card">
+    <div class="heart" id="heart" aria-label="Trái tim">❤️</div>
+    <h1>Chúc em yêu 19/11 vui vẻ</h1>
+    <p>Chúc em luôn vui vẻ, hạnh phúc và gặp thật nhiều điều tốt đẹp nhé!</p>
+    <p class="love">I Love You ❤️</p>
+    <button id="more">Gửi thêm trái tim 💗</button>
+    <div class="hint">Chạm vào trái tim để nhận thêm yêu thương ✨</div>
+  </main>
+<script>
+  function floatHeart() {
+    const el = document.createElement('span');
+    el.className = 'float';
+    el.textContent = ['💗','💕','💖','❤️','💘'][Math.floor(Math.random()*5)];
+    el.style.left = Math.random()*100 + 'vw';
+    el.style.fontSize = (18 + Math.random()*28) + 'px';
+    el.style.animationDuration = (3 + Math.random()*3) + 's';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 6500);
+  }
+  document.getElementById('heart').addEventListener('click', () => {
+    for (let i=0; i<12; i++) setTimeout(floatHeart, i*80);
+  });
+  document.getElementById('more').addEventListener('click', () => {
+    for (let i=0; i<24; i++) setTimeout(floatHeart, i*65);
+  });
+  setInterval(floatHeart, 650);
+</script>
+</body>
+</html>
